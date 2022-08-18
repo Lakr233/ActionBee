@@ -11,6 +11,10 @@ It can be used to clean your URL in text. To see code or import this module, che
 
 ![Clean URL](./Resources/Demo/Demo%20Link%20Cleaner.gif)
 
+With Universal Control and iCloud Pasteboard, link cleaner will work across devices.
+
+![Clean URL Across Devices](./Resources/Demo/Demo%20Link%20Cleaner%20Across%20Devices.gif)
+
 It can also be used to run the formator as follows. To see code or import this module, check out [here](./Resources/ModuleSample/Module%20Export%20-%20Multiline%20Init%20Formatter/).
 
 ![Format Code](./Resources/Demo/Demo%20Multiline%20Formatter.gif)
