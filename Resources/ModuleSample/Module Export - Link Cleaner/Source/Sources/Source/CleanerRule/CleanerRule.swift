@@ -18,7 +18,7 @@ protocol CleanerRule {
 }
 
 extension URL {
-    func deletingAllComponents() -> URL? {
+    func deletingAllQueryParameters() -> URL? {
         guard var components = URLComponents(
             url: self,
             resolvingAgainstBaseURL: false

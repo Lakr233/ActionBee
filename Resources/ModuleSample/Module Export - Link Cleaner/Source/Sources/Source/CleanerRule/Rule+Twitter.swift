@@ -14,7 +14,7 @@ class Twitter: CleanerRule {
 
     func process(original url: URL) -> URL? {
         guard url.deletingLastPathComponent().lastPathComponent == "status",
-              let result = url.deletingAllComponents()
+              let result = url.deletingAllQueryParameters()
         else {
             return nil
         }

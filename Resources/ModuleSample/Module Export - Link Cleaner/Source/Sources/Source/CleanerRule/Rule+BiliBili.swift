@@ -14,7 +14,7 @@ class BiliBili: CleanerRule {
 
     func process(original url: URL) -> URL? {
         guard url.deletingLastPathComponent().lastPathComponent == "video",
-              let result = url.deletingAllComponents()
+              let result = url.deletingAllQueryParameters()
         else {
             return nil
         }
@@ -50,7 +50,7 @@ class B23TV: CleanerRule {
                 guard let resp = resp as? HTTPURLResponse else {
                     return
                 }
-                cleanResult = resp.url?.deletingAllComponents()
+                cleanResult = resp.url?.deletingAllQueryParameters()
             }
             .resume()
         }
