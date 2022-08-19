@@ -294,10 +294,10 @@ struct ModuleEditView: View {
 
     func delete() {
         let alert = NSAlert()
-        alert.messageText = "Are you sure you want to delete this module? This operation can not be undone."
+        alert.messageText = NSLocalizedString("Are you sure you want to delete this module? This operation can not be undone.", comment: "")
         alert.alertStyle = .critical
-        alert.addButton(withTitle: "Delete")
-        alert.addButton(withTitle: "Cancel")
+        alert.addButton(withTitle: NSLocalizedString("Delete", comment: ""))
+        alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
         guard let window = NSApp.keyWindow else {
             return
         }
@@ -314,7 +314,7 @@ struct ModuleEditView: View {
 
     func addApp() {
         let openPanel = NSOpenPanel()
-        openPanel.prompt = "Select Application"
+        openPanel.prompt = NSLocalizedString("Select Application", comment: "")
         openPanel.allowedContentTypes = [.application]
         openPanel.allowsMultipleSelection = true
         openPanel.canChooseDirectories = true
@@ -351,7 +351,7 @@ struct ModuleEditView: View {
         guard NSWorkspace.shared.open(url) else {
             let alert = NSAlert()
             alert.alertStyle = .critical
-            alert.messageText = "Failed to load this module"
+            alert.messageText = NSLocalizedString("Failed to load this module", comment: "")
             if let window = NSApp.keyWindow {
                 alert.beginSheetModal(for: window)
             }

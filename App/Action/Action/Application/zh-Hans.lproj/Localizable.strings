@@ -1,0 +1,129 @@
+/* 
+  Localizable.strings
+  Action
+
+  Created by 维安雨轩 on 2022/08/19.
+  
+*/
+
+//ModuleManageView.swift
+
+"Create an action by click plus button on toolbar to process your pasteboard event. Format text, clean up links, speak when copy from special app, send to your device, etc etc. Choose an language you are familiar with to get start." = "通过点击工具栏上的加号按钮创建一个自动化来处理你的剪贴板事件。\n如格式化文本、清理链接或从设定应用中复制时，发送至你的设备等。\n现在快选择一种你熟悉的语言来开始吧。";
+"Add Action" = "添加自动化模块";
+"Import Action" = "导入自动化模块";
+"Module" = "模块";
+"You are about to import an Action Module which is untrusted with no signature. Importing malicious modules can pose unknown risks and there is no sandbox nor container dealing with it." = "你正在导入一个没有签名的不受信任的自动化模块。导入恶意模块可能会带来未知风险，在运行这个模块时并不会通过沙盒或容器来处理它。";
+"Trust And Import" = "信任并导入";
+"Cancel" = "取消";
+"Failed to import this module" = "导入模块失败";
+
+
+//  ModuleImportView.swift
+
+"You are about to import an untrusted module" = "您正在导入一个不受信任的模块";
+"Importing malicious module may damage your system, you are in charge to review this module." = "导入恶意模块可能会损坏你的系统，您需要负责审查这个模块。";
+"Trust & Import" = "信任并导入";
+"OK" = "成功";
+
+
+//  ModuleElementView.swift
+
+"Error" = "出错了";
+
+
+//  ModuleCreateView.swift
+
+"Create Action" = "创建自动化模块";
+"Module Name" = "模块名称";
+"Language" = "语言";
+"Next" = "继续";
+
+
+//  ModuleEditView.swift
+
+"Edit Action" = "编辑自动化模块";
+"Save" = "保存";
+"Compiling Source" = "正在编译模块...";
+"Broken Module" = "损坏的模块";
+"Delete" = "删除";
+"Close" = "关闭";
+"Enabled" = "启用";
+"Name" = "名称";
+"Timeout: " = "超时:";
+"Enable In App" = "在应用程序中启用";
+"Enabled for All Apps" = "为所有应用程序启用";
+"This pasteboard action will only run if copying from these apps" = "此自动化只有在从这些应用程序复制时才会运行";
+"Coding" = "编辑";
+"Edit Code" = "编辑代码";
+"Show in Finder" = "在 Finder 中显示";
+"Export" = "导出";
+"Module Template: %@" = "模板: %@";
+"Unknown" = "未知";
+"No Build Hint" = "没有构建提示";
+"You should recompile, click save, this module each time you edit it" = "在每次编辑该模块时，点击保存将会重新编译。";
+"Unable to compile this action: %@" = "无法编译这个自动化模块: %@";
+"Are you sure you want to delete this module? This operation can not be undone." = "您确定要删除这个模块吗？\n确定后将无法撤销。";
+"Select Application" = "选择应用程序";
+"Failed to load this module" = "加载此模块失败";
+"Module Export - %@" = "导出模块 - %@";
+"Unnamed" = "未命名";
+
+
+//  ContentView.swift
+
+"Toggle Sidebar" = "切换侧边栏";
+
+
+//  SidebarView.swift
+
+"App" = "应用";
+"Welcome" = "欢迎";
+"Action" = "自动化";
+"Module" = "模块";
+"History" = "历史";
+"Misc" = "其他";
+"Setting" = "设置";
+"Diagnostic" = "诊断";
+
+
+//  WelcomeView.swift
+
+"A programmable pasteboard action trigger." = "一个可编程的剪贴板触发器";
+
+
+//  HistoryView.swift
+
+"No History Was Found" = "暂无历史记录";
+"Clear History" = "清除历史记录";
+"Are you sure you want to delete all history records? This operation can not be undone." = "你确定要删除所有历史记录吗？\n确定后将无法撤销。";
+"Pasteboard Event" = "剪贴板事件";
+"Length: %lld Action Candidates: %lld" = "剪贴长度: %lld 共执行模块: %lld";
+"Deleted Action" = "被删除的动作";
+"  Post Action: %@" = "  动作: %@";
+"  Content: %@" = "  内容: %@";
+
+//  SettingView.swift
+
+"Pasteboard Deduplicate" = "阻拦重复执行";
+"Pasteboard content matches previous will not generate event if on" = "如剪贴板的内容与之前的相匹配，开启后，将不会执行事件。";
+"Silent Mode" = "静默模式";
+"Do not show popover after action triggered" = "动作触发后不弹出窗口";
+"Toast Mode" = "Toast 模式";
+"Use toast instead of popover on menubar" = "在屏幕上显示简易提示框而不是弹出式菜单";
+"Reduced UI Effects" = "减少 UI 视觉效果";
+"Turning off visual effects does not affect app's core functionality" = "关闭视觉效果并不会影响应用程序的核心功能";
+"Application" = "应用";
+"Get Source Code" = "获取源代码";
+"License" = "许可证";
+
+
+//  MenubarView.swift
+
+"ActionBee is ready to accept pasteboard events." = "ActionBee 已准备好处理剪贴板事件。";
+
+
+//  LicenseView.swift
+
+"Software License" = "软件许可证";
+"I understand and agree to this license." = "我理解并同意此许可。";
+"Done" = "同意";

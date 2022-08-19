@@ -75,9 +75,9 @@ struct HistoryView: View {
     func clearHistory() {
         let alert = NSAlert()
         alert.alertStyle = .critical
-        alert.messageText = "Are you sure you want to delete all history records? This operation can not be undone."
-        alert.addButton(withTitle: "Delete")
-        alert.addButton(withTitle: "Cancel")
+        alert.messageText = NSLocalizedString("Are you sure you want to delete all history records? This operation can not be undone.", comment: "")
+        alert.addButton(withTitle: NSLocalizedString("Delete", comment: ""))
+        alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
         guard let window = NSApp.keyWindow else {
             return
         }
