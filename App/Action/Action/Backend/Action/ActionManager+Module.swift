@@ -105,14 +105,14 @@ extension ActionManager {
         invalidateBinaryCache(forAction: id)
     }
 
-    func issueCompile(forAction actionId: Action.ID) -> Result<Void, GenericActionError> {
+    func issueCompile(forAction actionId: Action.ID, output: @escaping (String) -> Void) -> Result<Void, GenericActionError> {
         assert(!Thread.isMainThread)
         guard let action = self[actionId] else {
             return .failure(.brokenResources)
         }
         let result = action.template
             .obtainTemplateDetails()
-            .compileModule(id: actionId) { print($0) }
+            .compileModule(id: actionId, output: output)
         return result
     }
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		13C6C62128AF1BF0008ADA60 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 13C6C62328AF1BF0008ADA60 /* Localizable.strings */; };
+		1F6BCF0628B219B400C2B417 /* Template+Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6BCF0528B219B400C2B417 /* Template+Node.swift */; };
 		5001740128AA557100FF9B99 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5001740028AA557100FF9B99 /* UserDefault.swift */; };
 		5001740528AA818500FF9B99 /* DiagnosticLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5001740428AA818500FF9B99 /* DiagnosticLogView.swift */; };
 		5006F55E28A9663100C8ADBE /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5006F55D28A9663100C8ADBE /* Notification.swift */; };
@@ -61,6 +62,7 @@
 /* Begin PBXFileReference section */
 		13C6C62228AF1BF0008ADA60 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		13C6C62428AF1DEB008ADA60 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		1F6BCF0528B219B400C2B417 /* Template+Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Template+Node.swift"; sourceTree = "<group>"; };
 		5001740028AA557100FF9B99 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		5001740428AA818500FF9B99 /* DiagnosticLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticLogView.swift; sourceTree = "<group>"; };
 		5006F55D28A9663100C8ADBE /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				505A10A728A95EC200D46DB3 /* ActionManager+Template.swift */,
 				50A7D80228ACD14B004F0B34 /* Template+Executable.swift */,
 				5067392528AB786A003A6A9C /* Template+Swift.swift */,
+				1F6BCF0528B219B400C2B417 /* Template+Node.swift */,
 			);
 			path = ActionModuleTemplates;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				502E87A528AA95BF00CAB5E1 /* ModuleElementView.swift in Sources */,
 				5053CF9A288F9A5E00A92822 /* ModuleCreateView.swift in Sources */,
 				505A10A828A95EC200D46DB3 /* ActionManager+Template.swift in Sources */,
+				1F6BCF0628B219B400C2B417 /* Template+Node.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,7 +668,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = wiki.qaq.Action;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -697,7 +701,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = wiki.qaq.Action;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

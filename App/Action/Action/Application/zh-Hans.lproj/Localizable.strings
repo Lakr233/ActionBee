@@ -44,6 +44,7 @@
 "Edit Action" = "编辑自动化模块";
 "Save" = "保存";
 "Compiling Source" = "正在编译模块...";
+"Compile Finished" = "编译完成";
 "Broken Module" = "损坏的模块";
 "Delete" = "删除";
 "Close" = "关闭";

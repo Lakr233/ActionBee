@@ -65,12 +65,14 @@ extension ActionManager {
         case executableSwift
 
         case swift
+        case node
 
         func obtainTemplateDetails() -> ModuleTemplate {
             switch self {
             case .executable: return ModuleTemplateExecutable()
             case .executableSwift: return ModuleTemplateExecutableSwift()
             case .swift: return ModuleTemplateSwift()
+            case .node: return ModuleTemplateExecutableNode()
             }
         }
     }

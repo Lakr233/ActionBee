@@ -20,6 +20,9 @@ struct ModuleEditView: View {
     @State var openCompileView: Bool = false
     @State var hoverApplication: String? = nil
 
+    @State var compileLog: String = ""
+    @State var compilerFinished: Bool = false
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             if editingAction == nil {
@@ -62,22 +65,41 @@ struct ModuleEditView: View {
             actionEnabled = ActionManager.shared.enabledActions.contains(id)
         }
         .opacity(openCompileView ? 0 : 1)
-        .overlay(
-            VStack(alignment: .leading) {
-                ProgressView()
-                Divider().hidden()
-                Spacer().frame(height: 20)
-                Text("Compiling Source")
-                    .font(.headline)
-                Spacer().frame(height: 6)
-                RandomCodeTextView()
-            }
-            .opacity(openCompileView ? 1 : 0)
-            .padding()
-        )
+        .overlay(compileOverlay)
         .padding()
-        .animation(.interactiveSpring(), value: openCompileView)
         .frame(width: 500, alignment: .center)
+    }
+
+    var compileOverlay: some View {
+        VStack(alignment: .leading) {
+            if !compilerFinished { ProgressView().padding(.top, 20) }
+            Spacer().frame(height: 20)
+            Text(compilerFinished ? "Compile Finished" : "Compiling Source")
+                .font(.headline)
+            Spacer().frame(height: 6)
+            if !compilerFinished { RandomCodeTextView() }
+            Divider()
+            ScrollView(.vertical, showsIndicators: true) {
+                VStack(alignment: .leading, spacing: 4) {
+                    ForEach(Array(
+                        compileLog
+                            .components(separatedBy: "\n")
+                            .reversed()
+                            .enumerated()
+                    ), id: \.offset) { _, log in
+                        Text(log).textSelection(.enabled)
+                    }
+                    .font(.system(.footnote, design: .monospaced))
+                    .opacity(0.5)
+                }
+            }
+            Button("Cancel") {
+                compileLog = ""
+                openCompileView = false
+            }
+            .opacity(compilerFinished ? 1 : 0)
+        }
+        .opacity(openCompileView ? 1 : 0)
     }
 
     var brokenModule: some View {
@@ -280,6 +302,7 @@ struct ModuleEditView: View {
                 ActionManager.shared[id] = action
                 presentationMode.wrappedValue.dismiss()
             case let .failure(failure):
+                compilerFinished = true
                 let alert = NSAlert()
                 alert.alertStyle = .critical
                 alert.messageText = "Unable to compile this action: \(failure.message)"
@@ -401,9 +424,12 @@ struct ModuleEditView: View {
             return
         }
         DispatchQueue.global().async {
-            let result = ActionManager.shared.issueCompile(forAction: action.id)
+            let result = ActionManager.shared.issueCompile(forAction: action.id) { str in
+                DispatchQueue.withMainAndWait {
+                    compileLog.append(str)
+                }
+            }
             DispatchQueue.main.async {
-                openCompileView = false
                 completion(result)
             }
         }

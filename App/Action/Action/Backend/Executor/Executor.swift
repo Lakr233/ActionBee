@@ -24,6 +24,28 @@ final class Executor {
         }
         print("[*] whoami \(username)")
 
+        do {
+            let findEnv = AuxiliaryExecute.spawn(
+                command: "/bin/zsh",
+                args: ["-c", "source ~/.zshrc 1>/dev/null 2>/dev/null && echo $PATH"]
+            )
+            let env = findEnv.stdout.trimmingCharacters(in: .whitespacesAndNewlines)
+            print("[*] setting up env PATH value \(findEnv.stdout)")
+            let envPathBuilder = env.components(separatedBy: ":")
+                .filter { FileManager.default.fileExists(atPath: $0) }
+            let origPathBuilder = (
+                ProcessInfo
+                    .processInfo
+                    .environment["PATH"] ?? ""
+            )
+            .components(separatedBy: ":")
+            .filter { FileManager.default.fileExists(atPath: $0) }
+            let newPath = Array(Set(envPathBuilder + origPathBuilder))
+                .joined(separator: ":")
+
+            setenv("PATH", newPath, 1)
+        }
+
         try? FileManager.default.createDirectory(at: executorDir, withIntermediateDirectories: true)
     }
 

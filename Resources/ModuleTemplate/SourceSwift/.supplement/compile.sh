@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # this compiler script is designed to issue binary to ./.build/cli
 
@@ -9,6 +9,7 @@ cd "$(dirname "$0")"/../
 echo "[*] starting build at $(pwd)..."
 
 if [ ! -f .action ]; then
+    echo "[E] malformed project architecture"
     exit 1
 fi
 
@@ -26,8 +27,7 @@ BUILT_PRODUCTS_DIR=$(
         -workspace ./App.xcworkspace \
         -scheme CommandLineBridge \
         -showBuildSettings \
-        CODE_SIGNING_ALLOWED="NO" \
-        2>/dev/null | grep -m 1 "BUILT_PRODUCTS_DIR" | grep -oEi "\/.*"
+        CODE_SIGNING_ALLOWED="NO" | grep -m 1 "BUILT_PRODUCTS_DIR" | grep -oEi "\/.*"
 )
 
 BINARY_LOCATION="$BUILT_PRODUCTS_DIR/CommandLineBridge"
@@ -42,8 +42,7 @@ xcodebuild \
     -configuration Release \
     -workspace ./App.xcworkspace \
     -scheme CommandLineBridge \
-    CODE_SIGNING_ALLOWED="NO" \
-    1>/dev/null 2>/dev/null
+    CODE_SIGNING_ALLOWED="NO"
 
 # check if the binary exists
 if [ ! -f "$BINARY_LOCATION" ]; then
