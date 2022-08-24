@@ -2,6 +2,13 @@
 
 # this compiler script is designed to issue result to ./dist/index.js
 
+export PATH=$PATH:/opt/homebrew/bin:/usr/local/bin
+
+if ! [ -x "$(command -v npm)" ]; then
+  echo '[E] npm is not installed.' >&2
+  exit 1
+fi
+
 set -e
 
 cd "$(dirname "$0")"/../
