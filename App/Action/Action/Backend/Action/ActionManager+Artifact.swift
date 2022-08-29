@@ -7,7 +7,7 @@
 
 import Foundation
 
-private let artifactPathExtension = ".ActionBeeArtifact"
+private let artifactPathExtension = "ActionBeeArtifact"
 
 extension ActionManager {
     struct ModuleArtifact: Codable {
