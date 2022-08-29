@@ -45,17 +45,11 @@ extension ActionManager {
 
             do {
                 output("[*] starting compiler at \(temporaryDir.path)\n")
-                try FileManager.default.createDirectory(at: temporaryDir, withIntermediateDirectories: true)
-                try Executor.shared.unarchiveTar(at: getTemplateBundleURL(), toDest: temporaryDir)
-                let validatedSourcePathComponents = "src"
                 let userSrc = ActionManager.shared
                     .actionModuleBaseUrl
                     .appendingPathComponent(action.id.uuidString)
-                    .appendingPathComponent(validatedSourcePathComponents)
                 let targetSrc = temporaryDir
-                    .appendingPathComponent(validatedSourcePathComponents)
                 output("[*] copying user source from \(userSrc.path) to \(targetSrc.path)\n")
-                try FileManager.default.removeItem(at: targetSrc)
                 try FileManager.default.copyItem(at: userSrc, to: targetSrc)
                 FileManager.default.createFile(
                     atPath: temporaryDir.appendingPathComponent(".action").path,
@@ -75,28 +69,34 @@ extension ActionManager {
                 return .failure(.compilerError)
             }
 
-            let binaryLocation = temporaryDir
+            let artifactLocation = temporaryDir
                 .appendingPathComponent("dist")
-                .appendingPathComponent("index.js")
-            guard FileManager.default.fileExists(atPath: binaryLocation.path) else {
+//                .appendingPathComponent("index.js")
+
+            guard FileManager.default.fileExists(atPath: artifactLocation.path) else {
                 return .failure(.permissionDenied)
             }
 
-            output("[*] compiled binary at \(binaryLocation.path)\n")
-            ActionManager.shared.registerBianry(forAction: action.id, binary: binaryLocation)
+            output("[*] compiled binary at \(artifactLocation.path)\n")
+            ActionManager.shared.registerArtifact(forAction: action.id, artifact: artifactLocation)
             return .success
         }
 
         override func executeModule(id: ActionManager.Action.ID, withPasteboardEvent event: PasteboardManager.PEvent, output: @escaping (String) -> Void) -> Result<ActionManager.ActionRecipeData, ActionManager.GenericActionError> {
             assert(!Thread.isMainThread)
 
-            guard let action = ActionManager.shared[id] else {
+            guard let action = ActionManager.shared[id],
+                  let artifact = ActionManager.shared.artifacts[id]
+            else {
                 return .failure(.brokenResources)
             }
+            guard artifact.validateSignature() else {
+                return .failure(.unauthorizedModificationDetected)
+            }
 
-            let script = ActionManager.shared
-                .actionBinaryBaseUrl
-                .appendingPathComponent(action.id.uuidString)
+            let script = artifact
+                .obtainArtifactUrl()
+                .appendingPathComponent("index.js")
 
             guard let argument = ArgumentData(
                 focusAppID: event.app?.bundleIdentifier,

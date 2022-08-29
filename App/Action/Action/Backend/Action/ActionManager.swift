@@ -54,8 +54,8 @@ final class ActionManager: ObservableObject {
             print("[+] loading module \(action.name) - \(action.id.uuidString)")
         }
 
-        binaries = binariesStore
-        for binary in binaries {
+        artifacts = artifactsStore
+        for binary in artifacts {
             let found = actions.contains { $0.id == binary.key }
             if found {
                 print("[+] loading binary \(binary.key.uuidString)")
@@ -81,10 +81,10 @@ final class ActionManager: ObservableObject {
         return ret
     }
 
-    var actionBinaryBaseUrl: URL {
+    var actionArtifactBaseUrl: URL {
         let ret = ActionApp
             .documentDirectory
-            .appendingPathComponent("ActionBinary")
+            .appendingPathComponent("ActionArtifact")
         try? FileManager.default.createDirectory(
             at: ret,
             withIntermediateDirectories: true
@@ -135,11 +135,11 @@ final class ActionManager: ObservableObject {
         didSet { DispatchQueue.global().async { self.enabledActionsStore = self.enabledActions } }
     }
 
-    @EncryptedCodableDefaultsWrapper(key: "wiki.qaq.ActionManager.binariesStore", defaultValue: [Action.ID: ModuleBinary]())
-    private var binariesStore
+    @EncryptedCodableDefaultsWrapper(key: "wiki.qaq.ActionManager.artifactsStore", defaultValue: [Action.ID: ModuleArtifact]())
+    private var artifactsStore
 
-    @Published var binaries: [Action.ID: ModuleBinary] = [:] {
-        didSet { DispatchQueue.global().async { self.binariesStore = self.binaries } }
+    @Published var artifacts: [Action.ID: ModuleArtifact] = [:] {
+        didSet { DispatchQueue.global().async { self.artifactsStore = self.artifacts } }
     }
 
     @EncryptedCodableDefaultsWrapper(key: "wiki.qaq.ActionManager.historiesStore", defaultValue: [HistoryElement]())

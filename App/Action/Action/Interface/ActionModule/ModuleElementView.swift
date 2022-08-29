@@ -19,7 +19,7 @@ struct ModuleElementView: View {
 
     var gradientColor: Gradient {
         if actionManager.enabledActions.contains(id) {
-            if actionManager.binaries[id] == nil {
+            if actionManager.artifacts[id] == nil {
                 return Gradient(colors: [.pink, .red])
 
             } else {
@@ -46,7 +46,7 @@ struct ModuleElementView: View {
             .frame(width: 140, height: 80)
         }
         .overlay {
-            if actionManager.binaries[id] == nil {
+            if actionManager.artifacts[id] == nil {
                 Image(systemName: "xmark.octagon.fill")
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)

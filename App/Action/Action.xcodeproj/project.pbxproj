@@ -36,7 +36,7 @@
 		5067392B28AB7A51003A6A9C /* ActionManager+Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5067392A28AB7A51003A6A9C /* ActionManager+Event.swift */; };
 		5067392D28AB7D6C003A6A9C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5067392C28AB7D6C003A6A9C /* Result.swift */; };
 		5067393228AB8E55003A6A9C /* RandomCodeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5067393128AB8E55003A6A9C /* RandomCodeTextView.swift */; };
-		5067393428ABA328003A6A9C /* ActionManager+Binary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5067393328ABA328003A6A9C /* ActionManager+Binary.swift */; };
+		5067393428ABA328003A6A9C /* ActionManager+Artifact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5067393328ABA328003A6A9C /* ActionManager+Artifact.swift */; };
 		5067393628ABA422003A6A9C /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 5067393528ABA422003A6A9C /* KeychainAccess */; };
 		5067393828ABA445003A6A9C /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5067393728ABA445003A6A9C /* AES.swift */; };
 		5067393C28ABA89D003A6A9C /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5067393B28ABA89D003A6A9C /* Data.swift */; };
@@ -89,7 +89,7 @@
 		5067392A28AB7A51003A6A9C /* ActionManager+Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActionManager+Event.swift"; sourceTree = "<group>"; };
 		5067392C28AB7D6C003A6A9C /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		5067393128AB8E55003A6A9C /* RandomCodeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomCodeTextView.swift; sourceTree = "<group>"; };
-		5067393328ABA328003A6A9C /* ActionManager+Binary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActionManager+Binary.swift"; sourceTree = "<group>"; };
+		5067393328ABA328003A6A9C /* ActionManager+Artifact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActionManager+Artifact.swift"; sourceTree = "<group>"; };
 		5067393728ABA445003A6A9C /* AES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
 		5067393B28ABA89D003A6A9C /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		5067394028ABC9C3003A6A9C /* Menubar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menubar.swift; sourceTree = "<group>"; };
@@ -192,7 +192,7 @@
 				5053CF90288F776000A92822 /* ActionManager.swift */,
 				5030D80728ABDD72001A96B5 /* ActionManager+History.swift */,
 				5053CF92288F788B00A92822 /* ActionManager+Module.swift */,
-				5067393328ABA328003A6A9C /* ActionManager+Binary.swift */,
+				5067393328ABA328003A6A9C /* ActionManager+Artifact.swift */,
 				5067392A28AB7A51003A6A9C /* ActionManager+Event.swift */,
 				5067392728AB78CD003A6A9C /* ActionModuleTemplates */,
 				502D1F0928A8F88D0022CCD3 /* ActionTemplates */,
@@ -501,7 +501,7 @@
 				5067393228AB8E55003A6A9C /* RandomCodeTextView.swift in Sources */,
 				5071380C288E9C8800C23E7F /* SidebarView.swift in Sources */,
 				5030D81628AC090A001A96B5 /* Config.swift in Sources */,
-				5067393428ABA328003A6A9C /* ActionManager+Binary.swift in Sources */,
+				5067393428ABA328003A6A9C /* ActionManager+Artifact.swift in Sources */,
 				50BCF6AC288EE81000A97B4C /* PasteboardManager.swift in Sources */,
 				5053CF87288F764000A92822 /* ModuleManageView.swift in Sources */,
 				502E87A528AA95BF00CAB5E1 /* ModuleElementView.swift in Sources */,

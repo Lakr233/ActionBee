@@ -116,44 +116,35 @@ extension ActionManager {
         return result
     }
 
-    func registerBianry(forAction actionId: Action.ID, binary: URL) {
-        print("[*] copying binary at path \(binary.path) for action \(actionId)")
-        guard let sha256 = try? Data(contentsOf: binary).sha256() else {
-            print("[E] failed to generate binary signature")
-            return
-        }
-        let object = ModuleBinary(id: actionId, hash: sha256)
+    func registerArtifact(forAction actionId: Action.ID, artifact: URL) {
+        print("[*] copying artifact at path \(artifact.path) for action \(actionId)")
         try? FileManager.default.createDirectory(
-            at: ActionManager.shared.actionBinaryBaseUrl,
+            at: ActionManager.shared.actionArtifactBaseUrl,
             withIntermediateDirectories: true
         )
-        do {
-            try? FileManager.default.removeItem(at: object.obtainBinaryUrl())
-            try FileManager.default.copyItem(at: binary, to: object.obtainBinaryUrl())
-        } catch {
-            print("[E] \(error.localizedDescription)")
+        guard let object = ModuleArtifact(id: actionId, copyingArtifactAt: artifact) else {
             return
         }
-        print("[*] registering binary \(actionId)")
+        print("[*] registering artifact \(actionId) with signature \(object.signature)")
         guard Thread.isMainThread else {
             DispatchQueue.withMainAndWait {
-                self.binaries[object.id] = object
+                self.artifacts[object.id] = object
             }
             return
         }
-        binaries[object.id] = object
+        artifacts[object.id] = object
     }
 
     func invalidateBinaryCache(forAction actionId: Action.ID) {
         print("[*] invalidating binary cache for \(actionId)")
-        if let value = binaries[actionId] {
-            try? FileManager.default.removeItem(at: value.obtainBinaryUrl())
+        if let value = artifacts[actionId] {
+            try? FileManager.default.removeItem(at: value.obtainArtifactUrl())
         }
         if Thread.isMainThread {
-            binaries.removeValue(forKey: actionId)
+            artifacts.removeValue(forKey: actionId)
         } else {
             DispatchQueue.withMainAndWait {
-                self.binaries.removeValue(forKey: actionId)
+                self.artifacts.removeValue(forKey: actionId)
             }
         }
     }

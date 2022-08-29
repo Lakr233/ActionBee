@@ -38,6 +38,7 @@ struct ModuleImportView: View {
                 }
                 .keyboardShortcut(.cancelAction)
             }
+            Divider()
             Text(url.path)
                 .underline()
                 .font(.system(.footnote, design: .monospaced))

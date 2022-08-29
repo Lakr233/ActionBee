@@ -65,21 +65,19 @@ extension ActionManager {
                 return .failure(.permissionDenied)
             }
 
-            ActionManager.shared.registerBianry(forAction: action.id, binary: target)
+            ActionManager.shared.registerArtifact(forAction: action.id, artifact: target)
             return .success
         }
 
         func executeModule(id: ActionManager.Action.ID, withPasteboardEvent event: PasteboardManager.PEvent, output: @escaping (String) -> Void) -> Result<ActionManager.ActionRecipeData, ActionManager.GenericActionError> {
             assert(!Thread.isMainThread)
 
-            guard let action = ActionManager.shared[id] else {
+            guard let action = ActionManager.shared[id],
+                  let artifact = ActionManager.shared.artifacts[id]
+            else {
                 return .failure(.brokenResources)
             }
-            guard let binary = ActionManager.shared.binaries[id] else {
-                return .failure(.brokenResources)
-            }
-
-            guard binary.validateHash() else {
+            guard artifact.validateSignature() else {
                 return .failure(.unauthorizedModificationDetected)
             }
 
@@ -97,8 +95,13 @@ extension ActionManager {
 
             var resultData: ActionRecipeData?
 
+            let binary = artifact
+                .obtainArtifactUrl()
+                .appendingPathComponent("cli")
+                .path
+
             let recipe = AuxiliaryExecute.spawn(
-                command: binary.obtainBinaryUrl().path,
+                command: binary,
                 environment: ["Communicator_Message": argument],
                 timeout: Double(action.timeout),
                 output: output

@@ -84,7 +84,7 @@ extension ActionManager {
             }
 
             output("[*] compiled binary at \(binaryLocation.path)\n")
-            ActionManager.shared.registerBianry(forAction: action.id, binary: binaryLocation)
+            ActionManager.shared.registerArtifact(forAction: action.id, artifact: binaryLocation)
             return .success
         }
 
