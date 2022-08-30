@@ -57,6 +57,7 @@
 		50A7D80328ACD14B004F0B34 /* Template+Executable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A7D80228ACD14B004F0B34 /* Template+Executable.swift */; };
 		50BCF6AC288EE81000A97B4C /* PasteboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BCF6AB288EE81000A97B4C /* PasteboardManager.swift */; };
 		50BCF6AE288F01EF00A97B4C /* StatusBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BCF6AD288F01EF00A97B4C /* StatusBarManager.swift */; };
+		50E5204228BE04FC00C3228F /* Template+Python.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5204128BE04FC00C3228F /* Template+Python.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,6 +110,7 @@
 		50A7D80228ACD14B004F0B34 /* Template+Executable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Template+Executable.swift"; sourceTree = "<group>"; };
 		50BCF6AB288EE81000A97B4C /* PasteboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardManager.swift; sourceTree = "<group>"; };
 		50BCF6AD288F01EF00A97B4C /* StatusBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarManager.swift; sourceTree = "<group>"; };
+		50E5204128BE04FC00C3228F /* Template+Python.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Template+Python.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 				50A7D80228ACD14B004F0B34 /* Template+Executable.swift */,
 				5067392528AB786A003A6A9C /* Template+Swift.swift */,
 				1F6BCF0528B219B400C2B417 /* Template+Node.swift */,
+				50E5204128BE04FC00C3228F /* Template+Python.swift */,
 			);
 			path = ActionModuleTemplates;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50E5204228BE04FC00C3228F /* Template+Python.swift in Sources */,
 				50BCF6AE288F01EF00A97B4C /* StatusBarManager.swift in Sources */,
 				503976FA28AE143600588622 /* ModuleImportView.swift in Sources */,
 				5067393C28ABA89D003A6A9C /* Data.swift in Sources */,
@@ -653,7 +657,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = M4Z5DVY94F;
@@ -686,7 +690,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = M4Z5DVY94F;

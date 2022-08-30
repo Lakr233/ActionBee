@@ -286,7 +286,7 @@ struct ModuleEditView: View {
             presentationMode.wrappedValue.dismiss()
             return
         }
-        ActionManager.shared.invalidateBinaryCache(forAction: id)
+        ActionManager.shared.invalidateArtifactCache(forAction: id)
         ActionManager.shared.enabledActions = ActionManager.shared
             .enabledActions
             .filter { $0 != id }

@@ -55,13 +55,20 @@ final class ActionManager: ObservableObject {
         }
 
         artifacts = artifactsStore
-        for binary in artifacts {
-            let found = actions.contains { $0.id == binary.key }
+        for artifact in artifacts {
+            let found = actions.contains { $0.id == artifact.key }
             if found {
-                print("[+] loading binary \(binary.key.uuidString)")
+                print("[+] loading artifact \(artifact.key.uuidString)")
+                DispatchQueue.global().async {
+                    guard artifact.value.validateSignature() else {
+                        print("[E] artifact signature mismatch!")
+                        self.invalidateArtifactCache(forAction: artifact.key)
+                        return
+                    }
+                }
             } else {
                 DispatchQueue.global().async {
-                    self.invalidateBinaryCache(forAction: binary.key)
+                    self.invalidateArtifactCache(forAction: artifact.key)
                 }
             }
         }

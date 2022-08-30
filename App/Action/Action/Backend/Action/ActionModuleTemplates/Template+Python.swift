@@ -1,18 +1,18 @@
 //
-//  Template+Node.swift
+//  Template+Python.swift
 //  Action
 //
-//  Created by Innei on 2022/8/21.
+//  Created by Lakr Aream on 2022/8/30.
 //
 
 import AuxiliaryExecute
 import Foundation
 
 extension ActionManager {
-    class ModuleTemplateNode: ModuleTemplateExecutable {
-        override func getLanguage() -> String { "Source - Node" }
-        override func getTemplateBundleName() -> String { "SourceNode" }
-        override func getBuildHint() -> String { "To build Node Module, node and it's tool is required. Install them yourself." }
+    class ModuleTemplatePython: ModuleTemplateExecutable {
+        override func getLanguage() -> String { "Source - Python" }
+        override func getTemplateBundleName() -> String { "SourcePython" }
+        override func getBuildHint() -> String { "To build Python Module, python 3 and it's tool is required. Install them yourself." }
 
         override func openDesignatedEditor(id: ActionManager.Action.ID) -> Result<Void, ActionManager.GenericActionError> {
             let url = ActionManager.shared
@@ -31,54 +31,15 @@ extension ActionManager {
             return .success
         }
 
-        override func compileModule(id: ActionManager.Action.ID, output: @escaping (String) -> Void) -> Result<Void, ActionManager.GenericActionError> {
+        override func compileModule(id: ActionManager.Action.ID, output _: @escaping (String) -> Void) -> Result<Void, ActionManager.GenericActionError> {
             guard let action = ActionManager.shared[id] else {
                 return .failure(.brokenResources)
             }
+            let actionUrl = ActionManager.shared
+                .actionModuleBaseUrl
+                .appendingPathComponent(action.id.uuidString)
 
-            let temporaryDir = URL(fileURLWithPath: NSTemporaryDirectory())
-                .appendingPathComponent(UUID().uuidString)
-            try? FileManager.default.removeItem(at: temporaryDir)
-            defer {
-                try? FileManager.default.removeItem(at: temporaryDir)
-            }
-
-            do {
-                output("[*] starting compiler at \(temporaryDir.path)\n")
-                let userSrc = ActionManager.shared
-                    .actionModuleBaseUrl
-                    .appendingPathComponent(action.id.uuidString)
-                let targetSrc = temporaryDir
-                output("[*] copying user source from \(userSrc.path) to \(targetSrc.path)\n")
-                try FileManager.default.copyItem(at: userSrc, to: targetSrc)
-                FileManager.default.createFile(
-                    atPath: temporaryDir.appendingPathComponent(".action").path,
-                    contents: nil
-                )
-            } catch {
-                output("[E] \(error.localizedDescription)")
-                return .failure(.permissionDenied)
-            }
-
-            output("[*] calling compiler script\n")
-            let compileScript = temporaryDir
-                .appendingPathComponent(".supplement")
-                .appendingPathComponent("compile.sh")
-            let recipe = executeZshScript(atLocation: compileScript, output: output)
-            guard recipe.exitCode == 0 else {
-                return .failure(.compilerError)
-            }
-
-            let artifactLocation = temporaryDir
-                .appendingPathComponent("dist")
-//                .appendingPathComponent("index.js")
-
-            guard FileManager.default.fileExists(atPath: artifactLocation.path) else {
-                return .failure(.permissionDenied)
-            }
-
-            output("[*] compiled binary at \(artifactLocation.path)\n")
-            ActionManager.shared.registerArtifact(forAction: action.id, artifact: artifactLocation)
+            ActionManager.shared.registerArtifact(forAction: action.id, artifact: actionUrl)
             return .success
         }
 
@@ -96,7 +57,7 @@ extension ActionManager {
 
             let script = artifact
                 .obtainArtifactUrl()
-                .appendingPathComponent("index.js")
+                .appendingPathComponent("main.py")
 
             guard let argument = ArgumentData(
                 focusAppID: event.app?.bundleIdentifier,
@@ -114,7 +75,7 @@ extension ActionManager {
 
             let recipe = AuxiliaryExecute.spawn(
                 command: "/bin/zsh",
-                args: ["-c", "node \(script.path)"],
+                args: ["-c", "python3 \(script.path)"],
                 environment: ["Communicator_Message": argument],
                 timeout: Double(action.timeout),
                 output: output

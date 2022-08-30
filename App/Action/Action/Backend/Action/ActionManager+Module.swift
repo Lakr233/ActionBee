@@ -102,7 +102,7 @@ extension ActionManager {
         try? FileManager.default.removeItem(at: moduleUrl)
         actions = actions.filter { $0.id != id }
         enabledActions = enabledActions.filter { $0 != id }
-        invalidateBinaryCache(forAction: id)
+        invalidateArtifactCache(forAction: id)
     }
 
     func issueCompile(forAction actionId: Action.ID, output: @escaping (String) -> Void) -> Result<Void, GenericActionError> {
@@ -135,8 +135,8 @@ extension ActionManager {
         artifacts[object.id] = object
     }
 
-    func invalidateBinaryCache(forAction actionId: Action.ID) {
-        print("[*] invalidating binary cache for \(actionId)")
+    func invalidateArtifactCache(forAction actionId: Action.ID) {
+        print("[*] invalidating artifact cache for \(actionId)")
         if let value = artifacts[actionId] {
             try? FileManager.default.removeItem(at: value.obtainArtifactUrl())
         }
@@ -162,7 +162,7 @@ extension ActionManager {
             print("[*] manifest returns id \(action.id)")
             try? FileManager.default.removeItem(at: target)
             try FileManager.default.copyItem(at: at, to: target)
-            invalidateBinaryCache(forAction: action.id)
+            invalidateArtifactCache(forAction: action.id)
             DispatchQueue.withMainAndWait {
                 self[action.id] = action
                 self.enabledActions.append(action.id)
