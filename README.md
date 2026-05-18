@@ -48,3 +48,6 @@ Generically speaking, we do not hold responsibility for anything that happened o
 ---
 
 Copyright © 2022 Lakr Aream. All Rights Reserved.
+## Sponsor
+
+[LookInside](https://lookinside-app.com/) helps you inspect a running iOS or macOS app UI from your Mac.

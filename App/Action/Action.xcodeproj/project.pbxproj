@@ -58,6 +58,7 @@
 		50BCF6AC288EE81000A97B4C /* PasteboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BCF6AB288EE81000A97B4C /* PasteboardManager.swift */; };
 		50BCF6AE288F01EF00A97B4C /* StatusBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BCF6AD288F01EF00A97B4C /* StatusBarManager.swift */; };
 		50E5204228BE04FC00C3228F /* Template+Python.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5204128BE04FC00C3228F /* Template+Python.swift */; };
+		675988AA2CD277DA4F2F5B35 /* LookInsideServer in Frameworks */ = {isa = PBXBuildFile; productRef = C4117DCB75AC19E601840C7F /* LookInsideServer */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +123,7 @@
 				507137FC288E935A00C23E7F /* AuxiliaryExecute in Frameworks */,
 				5053CF9C288F9D8700A92822 /* SymbolPicker in Frameworks */,
 				5067393628ABA422003A6A9C /* KeychainAccess in Frameworks */,
+				675988AA2CD277DA4F2F5B35 /* LookInsideServer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,6 +353,7 @@
 				507137FD288E935A00C23E7F /* Colorful */,
 				5053CF9B288F9D8700A92822 /* SymbolPicker */,
 				5067393528ABA422003A6A9C /* KeychainAccess */,
+				C4117DCB75AC19E601840C7F /* LookInsideServer */,
 			);
 			productName = Action;
 			productReference = 507137E8288E934000C23E7F /* Action.app */;
@@ -381,6 +384,9 @@
 				"zh-Hans",
 			);
 			mainGroup = 507137DF288E934000C23E7F;
+			packageReferences = (
+				AE81ABC303C21158D981A790 /* XCRemoteSwiftPackageReference "LookInside-Release" */,
+			);
 			productRefGroup = 507137E9288E934000C23E7F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -696,6 +702,10 @@
 				DEVELOPMENT_TEAM = M4Z5DVY94F;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_SOURCE_FILE_NAMES = (
+					"$(inherited)",
+					"LookInsideServer*",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Action Bee";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
@@ -736,6 +746,17 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		AE81ABC303C21158D981A790 /* XCRemoteSwiftPackageReference "LookInside-Release" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LookInsideApp/LookInside-Release.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		5053CF9B288F9D8700A92822 /* SymbolPicker */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -752,6 +773,11 @@
 		507137FD288E935A00C23E7F /* Colorful */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Colorful;
+		};
+		C4117DCB75AC19E601840C7F /* LookInsideServer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE81ABC303C21158D981A790 /* XCRemoteSwiftPackageReference "LookInside-Release" */;
+			productName = LookInsideServer;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
